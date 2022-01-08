@@ -14,7 +14,7 @@ const port = process.env.PORT;
 const app = express();
 
 mongoose.connect(
-  `${process.env.DB_HOST}/marketbeta`,
+  `${process.env.DB_HOST}`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

@@ -69,14 +69,13 @@ module.exports = {
 
       const newUser = { ...user.toObject() };
       delete newUser.password;
-      delete newUser.__v;
 
       const token = jwt.sign({ ...newUser }, process.env.SECRET_KEY, {
         expiresIn: "24h",
       });
 
       return responseWrapper.response(res, 200, "Success login", {
-        ...newUser,
+        id: newUser._id,
         token,
       });
     } catch (error) {

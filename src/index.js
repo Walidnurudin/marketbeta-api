@@ -8,6 +8,7 @@ require("dotenv").config();
 
 // ROUTER
 const userRouter = require("./modules/user/userRoutes");
+const productRouter = require("./modules/product/productRoutes");
 
 const port = process.env.PORT;
 const app = express();
@@ -34,6 +35,7 @@ app.get("/", (req, res) => {
   res.send("Hello from express!");
 });
 app.use("/user", userRouter);
+app.use("/product", productRouter);
 
 app.listen(port, () => {
   console.log(`[server] running in http://localhost:${port}`);

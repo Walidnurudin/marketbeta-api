@@ -87,4 +87,38 @@ module.exports = {
       );
     }
   },
+
+  getUser: async (req, res) => {
+    try {
+      const { _id } = req.decodeToken;
+
+      const user = await userModel.findOne({ _id: _id });
+      if (!user) {
+        return responseWrapper.response(
+          res,
+          404,
+          `User by id ${_id} not found!`,
+          null
+        );
+      }
+
+      const newUser = { ...user.toObject() };
+      delete newUser.password;
+      delete newUser.__v;
+
+      return responseWrapper.response(
+        res,
+        200,
+        "Success get data user",
+        newUser
+      );
+    } catch (error) {
+      return responseWrapper.response(
+        res,
+        400,
+        `Bad request: ${error.message}`,
+        null
+      );
+    }
+  },
 };

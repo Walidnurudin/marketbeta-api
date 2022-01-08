@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema;
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -11,6 +12,10 @@ const productSchema = new mongoose.Schema({
   },
   desc: {
     type: String,
+  },
+  userId: {
+    type: ObjectId,
+    ref: "users",
   },
 });
 

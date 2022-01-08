@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -18,6 +19,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  productId: [
+    {
+      type: ObjectId,
+      ref: "products",
+    },
+  ],
 });
 
 module.exports = mongoose.model("users", userSchema);

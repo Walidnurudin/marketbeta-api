@@ -92,7 +92,9 @@ module.exports = {
     try {
       const { _id } = req.decodeToken;
 
-      const user = await userModel.findOne({ _id: _id });
+      const user = await userModel
+        .findOne({ _id: _id })
+        .populate({ path: "productId", select: ["name", "price", "desc"] });
       if (!user) {
         return responseWrapper.response(
           res,
